@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Appointment Request · Ink Pooja</title>
+  <meta name="description" content="Request a tattoo appointment with Ink Pooja. One step at a time.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Outfit:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Ink Pooja</a>
+    <p class="top-note">Appointment request</p>
+  </header>
+
+  <main class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Ink Pooja · Tokyo</p>
+      <h1>Book the session.</h1>
+      <p class="lede">One step at a time. Prices and budget stay in Japanese yen.</p>
+    </div>
+
+    <form id="booking" novalidate>
+      <div class="progress" aria-hidden="true">
+        <span id="bar"></span>
+      </div>
+      <p class="step-count" id="step-count" aria-live="polite">1 / 7</p>
+
+      <section class="slide is-active" data-slide="contact" aria-label="Contact">
+        <h2>Contact person</h2>
+        <p class="hint">Who should we write back to?</p>
+        <div class="row">
+          <label>First name <span class="req">*</span>
+            <input name="firstName" type="text" autocomplete="given-name" required>
+          </label>
+          <label>Last name <span class="req">*</span>
+            <input name="lastName" type="text" autocomplete="family-name" required>
+          </label>
+        </div>
+        <label>Contact person's email <span class="req">*</span>
+          <input name="email" type="email" autocomplete="email" required>
+        </label>
+      </section>
+
+      <section class="slide" data-slide="availability" aria-label="Availability" hidden>
+        <h2>Availability</h2>
+        <p class="hint">Please list all of your availability, and then indicate your preferred dates and times.</p>
+        <label class="sr">Availability <span class="req">*</span>
+          <textarea name="availability" required placeholder="Dates and times that work, and which ones you prefer"></textarea>
+        </label>
+      </section>
+
+      <section class="slide" data-slide="people" aria-label="Group size" hidden>
+        <h2>How many people are you booking for?</h2>
+        <div class="people" id="people">
+          <label><input type="radio" name="people" value="1" checked> 1</label>
+          <label><input type="radio" name="people" value="2"> 2</label>
+          <label><input type="radio" name="people" value="3"> 3</label>
+          <label><input type="radio" name="people" value="4"> 4</label>
+          <label><input type="radio" name="people" value="5"> 5</label>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="client" aria-label="Client" hidden>
+        <h2>Who will get this tattoo?</h2>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="who" value="Myself (Contact Person)" required> <span>Myself (Contact Person)</span></label>
+          <label class="choice"><input type="radio" name="who" value="Another Person"> <span>Another Person</span></label>
+        </div>
+        <p class="hint">Client name</p>
+        <div class="row">
+          <label>First name <span class="req">*</span>
+            <input name="clientFirst" type="text" required>
+          </label>
+          <label>Last name <span class="req">*</span>
+            <input name="clientLast" type="text" required>
+          </label>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="tattoo" aria-label="Tattoo" hidden>
+        <h2>The tattoo</h2>
+        <label>Tattoo description
+          <textarea name="description" placeholder="Tattoo design: elements, placement. Tattoo style: color or black and grey, level of detail."></textarea>
+        </label>
+        <label>Tattoo placement
+          <input name="placement" type="text" placeholder="Arm, back, ribs…">
+        </label>
+        <label>Approximate size <span class="req">*</span>
+          <span class="suffix"><input name="size" type="number" min="1" inputmode="decimal" required><em>cm</em></span>
+        </label>
+        <label class="drop">Reference photos
+          <input name="photos" type="file" accept="image/*" multiple>
+          <span>Photo references of the design, the style, and the area on the body. Photos are attached to the studio email. 10 MB total.</span>
+        </label>
+        <ul class="files" data-files></ul>
+      </section>
+
+      <section class="slide" data-slide="artist" aria-label="Budget" hidden>
+        <h2>Budget</h2>
+        <p class="hint">Budget is optional and in Japanese yen.</p>
+        <label>Budget JPY <span class="opt">Optional</span>
+          <span class="suffix yen"><em>¥</em><input name="budget" type="number" min="0" inputmode="numeric" placeholder="Optional"></span>
+        </label>
+        <p class="hint">Would you like to include another tattoo?</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="another" value="only" checked> <span>This is the only tattoo</span></label>
+          <label class="choice"><input type="radio" name="another" value="more"> <span>Include another tattoo</span></label>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="policy" aria-label="Privacy" hidden>
+        <h2>Before you submit</h2>
+        <div class="policy">
+          <p>By submitting this form, you agree to the following:</p>
+          <ol>
+            <li><strong>Purpose of data collection.</strong> Your personal information (name, contact details, and tattoo description) will be used only to respond to your inquiry, schedule appointments, and provide related studio services.</li>
+            <li><strong>Information we collect.</strong> Name and email. Tattoo ideas, placement, and reference images if you provide them. Any notes you include.</li>
+            <li><strong>Data protection.</strong> Your request is emailed to the studio, including any reference photos you attach. A form delivery service only transmits that email. It is not sold or used for advertising.</li>
+            <li><strong>Access and deletion.</strong> You may request access, correction, or deletion of your personal data by contacting the studio.</li>
+          </ol>
+        </div>
+        <label class="choice">
+          <input type="checkbox" name="privacy" required>
+          <span>I have read and agree to the privacy policy.</span>
+        </label>
+        <label class="choice">
+          <input type="checkbox" name="age" required>
+          <span>I am 18 years or older. Write “Everyone” in your notes if you are booking for multiple people.</span>
+        </label>
+      </section>
+
+      <p class="err" id="error" hidden></p>
+
+      <div class="actions">
+        <button type="button" id="back" hidden>Back</button>
+        <button type="button" id="next">Next</button>
+      </div>
+    </form>
+
+    <section id="success" class="success" hidden>
+      <h2>Thank you for filling out the form.</h2>
+      <p>We will respond shortly.</p>
+    </section>
+  </main>
+
+  <template id="extra-template">
+    <section class="slide" data-slide="extra" hidden>
+      <h2>Another tattoo</h2>
+      <p class="hint">Who will get this tattoo?</p>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="who" value="Myself (Contact Person)"> <span>Myself (Contact Person)</span></label>
+        <label class="choice"><input type="radio" name="who" value="Another Person"> <span>Another Person</span></label>
+      </div>
+      <div class="row">
+        <label>First name <span class="req">*</span>
+          <input name="clientFirst" type="text" required>
+        </label>
+        <label>Last name <span class="req">*</span>
+          <input name="clientLast" type="text" required>
+        </label>
+      </div>
+      <label>Tattoo description <span class="req">*</span>
+        <textarea name="description" required placeholder="Design, style, color or black and grey, level of detail."></textarea>
+      </label>
+      <label>Tattoo placement
+        <input name="placement" type="text">
+      </label>
+      <label>Approximate size <span class="req">*</span>
+        <span class="suffix"><input name="size" type="number" min="1" inputmode="decimal" required><em>cm</em></span>
+      </label>
+      <label class="drop">Reference photos
+        <input name="photos" type="file" accept="image/*" multiple>
+        <span>Design, style, and the area on the body. Photos are attached to the studio email. 10 MB total.</span>
+      </label>
+      <ul class="files" data-files></ul>
+      <fieldset>
+        <legend>Preferred artist(s) <span class="opt">Optional</span></legend>
+        <div class="chips" data-artists></div>
+      </fieldset>
+      <label>Budget JPY <span class="opt">Optional</span>
+        <span class="suffix yen"><em>¥</em><input name="budget" type="number" min="0" inputmode="numeric"></span>
+      </label>
+      <p class="hint">Would you like to include another tattoo?</p>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="another" value="only" checked> <span>These are the only tattoos</span></label>
+        <label class="choice"><input type="radio" name="another" value="more"> <span>Include another tattoo</span></label>
+      </div>
+    </section>
+  </template>
+
+  <script src="js/landing.js" defer></script>
+</body>
+</html>
